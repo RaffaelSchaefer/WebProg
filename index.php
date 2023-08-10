@@ -1,12 +1,21 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pizza Rechner</title>
     <link rel="stylesheet" href="./css/style.css">
 </head>
+
 <body>
+    <!--create php session-->
+    <?php 
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+    ?>
     <header>
         <h1>Pizza Rechner</h1>
         <img src="https://cdn.pixabay.com/photo/2020/03/08/16/04/pizza-4912871_1280.png" alt="Pizza Rechner Logo" height="100">
@@ -14,6 +23,13 @@
     <main>
         <aside>Werbung</aside>
         <article>
+            <!--create a button if a session exits, when pressed destroy session-->
+            <?php
+                if (isset($_SESSION['name'])) {
+                    echo '<p>Willkommen, ' . $_SESSION['name'] . '!</p>';
+                    echo '<a href="#?action=logout">Logout</a>';
+                }
+            ?>
             <form>
                 <label for="size">Pizza Durchmesser</label><input type="number" name="size" id="size" placeholder="Größe in cm" min="0" value="30.00" required><br>
                 <label for="price">Pizza Preis</label><input type="number" name="price" id="price" placeholder="Preis in Euro" min="0" value="10.00" required><br>
@@ -29,4 +45,5 @@
     </footer>
     <script src="./js/app.js"></script>
 </body>
+
 </html>
