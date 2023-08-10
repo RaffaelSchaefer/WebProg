@@ -10,11 +10,12 @@
 </head>
 
 <body>
-    <!--create php session-->
-    <?php 
-        if (!isset($_SESSION)) {
-            session_start();
-        }
+    <?php
+    if (isset($_GET['action']) && $_GET['action'] == 'logout') {
+        session_destroy();
+    } elseif (!isset($_SESSION)) {
+        session_start();
+    }
     ?>
     <header>
         <h1>Pizza Rechner</h1>
@@ -25,14 +26,16 @@
         <article>
             <!--create a button if a session exits, when pressed destroy session-->
             <?php
-                if (isset($_SESSION['name'])) {
-                    echo '<p>Willkommen, ' . $_SESSION['name'] . '!</p>';
-                    echo '<a href="#?action=logout">Logout</a>';
-                }
+            if (isset($_SESSION)) {
+                echo '<p>Willkommen!</p>';
+                echo '<a href="#?action=logout">Logout</a>';
+            }
             ?>
             <form>
-                <label for="size">Pizza Durchmesser</label><input type="number" name="size" id="size" placeholder="Größe in cm" min="0" value="30.00" required><br>
-                <label for="price">Pizza Preis</label><input type="number" name="price" id="price" placeholder="Preis in Euro" min="0" value="10.00" required><br>
+                <label for="size">Pizza Durchmesser</label>
+                <input type="number" name="size" id="size" placeholder="Größe in cm" min="0" value="30.00" required><br>
+                <label for="price">Pizza Preis</label>
+                <input type="number" name="price" id="price" placeholder="Preis in Euro" min="0" value="10.00" required><br>
                 <input type="radio" name="round" id="round"><label for="round">ist Rund</label><br>
                 <input type="button" value="Hinzufügen">
             </form>
