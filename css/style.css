@@ -1,0 +1,27 @@
+* {
+    font-family: sans-serif;
+}
+
+header , main{
+    display: flex;
+}
+
+header {
+    justify-content: space-between;
+}
+main {
+    height: 80vh;
+}
+
+main article {
+    padding: 20px;
+}
+
+main aside {
+    width: 20vw;
+    background-color: red;
+    color: white;
+    text-align: center;
+    padding-top: 20px;
+    font-weight: bolder;
+}
